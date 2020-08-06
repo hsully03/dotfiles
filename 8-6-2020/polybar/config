@@ -1,0 +1,111 @@
+[bar/top]
+wm-restack = i3
+monitor =
+bottom = false
+fixed-center = true
+width = 100%
+height = 30
+offset-y = 30
+offest-x = 50%
+border-left-size= 90
+border-right-size= 90
+border-color = #00000000
+radius = 0.5
+modules-left = date
+modules-right = pulseaudio 
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+background = #00000000
+tray-position = none
+override-redirect = true
+
+font-0 = "System San Francisco Display:weight=bold:pixelsize=12;0"
+font-1 = FontAwesome5Free:style=Solid:size=12;0
+font-2 = FontAwesome5Brands:style=Regular:size=12;0
+
+[module/date]
+type = internal/date
+
+; Seconds to sleep between updates
+; Default: 1.0
+interval = 1.0
+
+
+; See "https://en.cppreference.com/w/cpp/io/manip/put_time" for details on how to format the date string
+; NOTE: if you want to use syntax tags here you need to use %%{...}
+date = %{F#4e5461} %I:%M %{F-}
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
+; If not, uses default sink
+sink = alsa_output.pci-0000_12_00.3.analog-stereo
+
+format-volume = <bar-volume>
+
+bar-volume-width = 10
+bar-volume-foreground-0 = #4e5461
+bar-volume-foreground-1 = #4e5461
+bar-volume-foreground-2 = #4e5461
+bar-volume-foreground-3 = #4e5461
+bar-volume-foreground-4 = #4e5461
+bar-volume-foreground-5 = #4e5461
+bar-volume-foreground-6 = #4e5461
+bar-volume-gradient = false
+bar-volume-indicator = │
+bar-volume-indicator-font = 2
+bar-volume-indicator-foreground = #f3f4f5
+bar-volume-fill = ─
+bar-volume-fill-font = 2
+bar-volume-empty = ─
+bar-volume-empty-font = 2
+bar-volume-empty-foreground = #4e5461
+
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
+
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 5
+
+[module/player-mpris-tail]
+type = custom/script
+exec = .config/polybar/scripts/player-mpris-tail.py -f '{icon} {artist} - {title}'
+tail = true
+click-left = ~/polybar-scripts/player-mpris-tail.py previous &
+click-right = ~/polybar-scripts/player-mpris-tail.py next &
+click-middle = ~/polybar-scripts/player-mpris-tail.py play-pause &
+
+[bar/bottom]
+wm-restack = i3
+monitor =
+bottom = true
+fixed-center = true
+width = 100%
+height = 30
+offset-y = 20
+offest-x = 50%
+border-left-size=
+border-right-size=
+border-color = #00000000
+radius = 0.5
+modules-center = i3
+scroll-up = i3wm-wsnext
+scroll-down = i3wm-wsprev
+background = #00000000
+tray-position = none
+override-redirect = true
+
+font-0 = "System San Francisco Display:pixelsize=12;0"
+font-1 = FontAwesome5Free:style=Solid:size=12;0
+font-2 = FontAwesome5Brands:style=Regular:size=12;0
+
+[module/i3]
+type = internal/i3
+offset-x = -20
+label-focused-foreground = #ffffff
+label-unfocused-foreground = #33FFFFFF
+label-urgent-foreground = #9bee72
