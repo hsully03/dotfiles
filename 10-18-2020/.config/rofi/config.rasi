@@ -1,0 +1,5 @@
+configuration {
+	show-icons: false;
+	sidebar-mode: false;
+	theme: "/usr/share/rofi/themes/Mizu.rasi";
+}
